@@ -1,0 +1,224 @@
+{
+  "name": "test 5",
+  "description": "Imported database from sql server 'analytics-db-server.database.windows.net' and database 'AdWorksSample'",
+  "compatibilityLevel": 1400,
+  "model": {
+    "name": "test",
+    "description": "A Tabular data model at the 1400 compatibility level.",
+    "defaultMode": "directQuery",
+    "culture": "en-US",
+    "dataSources": [
+      {
+        "type": "structured",
+        "name": "SqlServer analytics-db-server.database.windows.net AdWorksSample",
+        "description": "A data source definition that uses explicit sql server credentials from connection string",
+        "connectionDetails": {
+          "protocol": "tds",
+          "address": {
+            "server": "analytics-db-server.database.windows.net",
+            "database": "AdWorksSample"
+          }
+        },
+        "credential": {
+          "AuthenticationKind": "UsernamePassword",
+          "Username": "analytics_admin",
+          "EncryptConnection": true,
+          "Password": null
+        }
+      },
+      {
+        "type": "structured",
+        "name": "SqlServer analytics-db-server.database.windows.net AdWorksSample2",
+        "description": "A data source definition that uses explicit sql server credentials from connection string",
+        "connectionDetails": {
+          "protocol": "tds",
+          "address": {
+            "server": "aswizarg-server.database.windows.net",
+            "database": "AdventureWorksDBKamil3"
+          }
+        },
+        "credential": {
+          "AuthenticationKind": "UsernamePassword",
+          "Username": "analytics_admin",
+          "EncryptConnection": true,
+          "Password": null
+        }
+      }
+    ],
+    "tables": [
+      {
+        "name": "Customer",
+        "description": "All data from Customer",
+        "columns": [
+          {
+            "name": "CustomerID",
+            "dataType": "int64",
+            "isNullable": false,
+            "sourceColumn": "CustomerID"
+          },
+          {
+            "name": "NameStyle",
+            "dataType": "boolean",
+            "isNullable": false,
+            "sourceColumn": "NameStyle",
+            "displayOrdinal": 1
+          },
+          {
+            "name": "Title",
+            "dataType": "string",
+            "sourceColumn": "Title",
+            "displayOrdinal": 2
+          },
+          {
+            "name": "FirstName",
+            "dataType": "string",
+            "isNullable": false,
+            "sourceColumn": "FirstName",
+            "displayOrdinal": 3
+          },
+          {
+            "name": "MiddleName",
+            "dataType": "string",
+            "sourceColumn": "MiddleName",
+            "displayOrdinal": 4
+          },
+          {
+            "name": "LastName",
+            "dataType": "string",
+            "isNullable": false,
+            "sourceColumn": "LastName",
+            "displayOrdinal": 5
+          },
+          {
+            "name": "Suffix",
+            "dataType": "string",
+            "sourceColumn": "Suffix",
+            "displayOrdinal": 6
+          },
+          {
+            "name": "CompanyName",
+            "dataType": "string",
+            "sourceColumn": "CompanyName",
+            "displayOrdinal": 7
+          },
+          {
+            "name": "SalesPerson",
+            "dataType": "string",
+            "sourceColumn": "SalesPerson",
+            "displayOrdinal": 8
+          },
+          {
+            "name": "EmailAddress",
+            "dataType": "string",
+            "sourceColumn": "EmailAddress",
+            "displayOrdinal": 9
+          },
+          {
+            "name": "Phone",
+            "dataType": "string",
+            "sourceColumn": "Phone",
+            "displayOrdinal": 10
+          },
+          {
+            "name": "PasswordHash",
+            "dataType": "string",
+            "isNullable": false,
+            "sourceColumn": "PasswordHash",
+            "displayOrdinal": 11
+          },
+          {
+            "name": "PasswordSalt",
+            "dataType": "string",
+            "isNullable": false,
+            "sourceColumn": "PasswordSalt",
+            "displayOrdinal": 12
+          },
+          {
+            "name": "rowguid",
+            "dataType": "string",
+            "isNullable": false,
+            "sourceColumn": "rowguid",
+            "displayOrdinal": 13
+          },
+          {
+            "name": "ModifiedDate",
+            "dataType": "dateTime",
+            "isNullable": false,
+            "sourceColumn": "ModifiedDate",
+            "displayOrdinal": 14
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Customer",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let ",
+                "Source = #\"SqlServer analytics-db-server.database.windows.net AdWorksSample\", ",
+                "#\"SalesLT_Customer\" = Source{[Schema=\"SalesLT\",Item=\"Customer\"]}[Data] ",
+                "in ",
+                "#\"SalesLT_Customer\""
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "CustomerAddress",
+        "description": "All data from CustomerAddress",
+        "columns": [
+          {
+            "name": "CustomerID",
+            "dataType": "int64",
+            "isNullable": false,
+            "sourceColumn": "CustomerID"
+          },
+          {
+            "name": "AddressID",
+            "dataType": "int64",
+            "isNullable": false,
+            "sourceColumn": "AddressID",
+            "displayOrdinal": 1
+          },
+          {
+            "name": "AddressType",
+            "dataType": "string",
+            "isNullable": false,
+            "sourceColumn": "AddressType",
+            "displayOrdinal": 2
+          },
+          {
+            "name": "rowguid",
+            "dataType": "string",
+            "isNullable": false,
+            "sourceColumn": "rowguid",
+            "displayOrdinal": 3
+          },
+          {
+            "name": "ModifiedDate",
+            "dataType": "dateTime",
+            "isNullable": false,
+            "sourceColumn": "ModifiedDate",
+            "displayOrdinal": 4
+          }
+        ],
+        "partitions": [
+          {
+            "name": "CustomerAddress",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let ",
+                "Source = #\"SqlServer analytics-db-server.database.windows.net AdWorksSample\", ",
+                "#\"SalesLT_CustomerAddress\" = Source{[Schema=\"SalesLT\",Item=\"CustomerAddress\"]}[Data] ",
+                "in ",
+                "#\"SalesLT_CustomerAddress\""
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
